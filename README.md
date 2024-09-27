@@ -1,10 +1,10 @@
-# OO A Parking Lot
+# OO Store Inventory
 
-An assignment to learn object oriented programming using Java. 
+An assignment to learn object-oriented programming using Java. 
 
 ### MVP
-- The parking lot has 10 free slots
-- A board at the entrance displays how many slots are availabe
-- Only cars are allowed to park
-- When a car enters, it occupies a slot
-- When a car exits, it frees up a slot
+- The store stocks 10 generic items
+- The app can display how many items are available
+- A customer can purchase 1 or more items
+- When an item is purchased, it frees up a slot
+- Items can be restocked to full capacity

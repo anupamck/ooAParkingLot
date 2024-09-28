@@ -4,6 +4,7 @@ import java.io.*;
 public class StoreSimulator {
     private Store store;
     private int restockLimit = 10;
+    private final Random random = new Random();
 
     void setStore(Store store) {
         this.store = store;
@@ -31,7 +32,6 @@ public class StoreSimulator {
         Scanner scanner = new Scanner(System.in);
         while(true) {
             System.out.println("The store has " + store.getStock() + " items stocked");
-            Random random = new Random();
             int purchaseQuantity = random.nextInt(1,11);
             System.out.println("The store sells " + purchaseQuantity + " items");
             store.sellItems(purchaseQuantity);

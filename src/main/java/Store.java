@@ -1,13 +1,20 @@
 public class Store {
-    private int capacity = 10;
-    private int itemsPurchased;
+    private int storeCapacity = 100;
+    private int itemsRemaining = storeCapacity;
 
-    private Customer customer;
-
-    public int getAvailableSlots() {
-        return (capacity - itemsPurchased);
+    void setStoreCapacity(int capacity) {
+        storeCapacity = capacity;
+        itemsRemaining = storeCapacity;
     }
-    void displayAvailableSlots() {
-        System.out.println(getAvailableSlots() + " slots are available");
+    int getStock() {
+        return itemsRemaining;
+    }
+    
+    void sellItems(int numberOfItemsSold) {
+        itemsRemaining = getStock() - numberOfItemsSold;
+    }
+
+    void restock() {
+        itemsRemaining = storeCapacity;
     }
 }

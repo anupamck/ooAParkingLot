@@ -2,33 +2,51 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StoreTest {
-    Store store = new Store();
+        Store store = new Store();
+        Item chessBoard = new Item();
 
-    @BeforeEach
-    public void setup() {
-        store.setStoreCapacity(10);
-    }
+        Item book = new Item();
 
-    @Test
-    void shouldReturnAllItemsInStock() {
-        assertEquals(10, store.getStock());
-    }
+        @BeforeEach
+        public void setup() {
+            chessBoard.setItemName("chessBoard");
+            chessBoard.setItemCapacity(12);
+            chessBoard.setRestockLimit(4);
+            store.addItemToStore(chessBoard);
+            book.setItemName("book");
+            book.setItemCapacity(30);
+            book.setRestockLimit(10);
+            store.addItemToStore(book);
+        }
+        @Test
+        void shouldSellBooks() {
+            store.sellItem(book, 10);
+            assertEquals(20, book.getStock());
+        }
 
-    @Test
-    void shouldReturnItemsInStockAfterSale() {
-        store.sellItems(3);
-        assertEquals(7, store.getStock());
-        store.sellItems(4);
-        assertEquals(3, store.getStock());
-    }
+        @Test
+        void shouldSellChessBoards() {
+            store.sellItem(chessBoard, 5);
+            assertEquals(7, chessBoard.getStock());
+        }
 
-    @Test
-    void shouldRestock() {
-        store.sellItems(3);
-        assertEquals(7, store.getStock());
-        store.restock();
-        assertEquals(10, store.getStock());
-    }
+        @Test
+        void shouldRestockAllItems() {
+            store.sellItem(book, 10);
+            store.sellItem(chessBoard,5);
+            store.restockAllItems();
+            assertEquals(30, book.getStock());
+            assertEquals(12, chessBoard.getStock());
+        }
+
+        @Test
+        void shouldAutoRestockAllItems() {
+            store.sellItem(book, 10);
+            store.sellItem(chessBoard,9);
+            store.autoRestockAllItems();
+            assertEquals(20, book.getStock());
+            assertEquals(12, chessBoard.getStock());
+        }
 }
 
 

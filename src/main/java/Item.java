@@ -21,6 +21,10 @@ public class Item {
         itemName = name;
     }
 
+    public String getItemName() {
+        return itemName;
+    }
+
     void sell(int saleQuantity) {
         quantityAvailable = quantityAvailable - saleQuantity;
     }

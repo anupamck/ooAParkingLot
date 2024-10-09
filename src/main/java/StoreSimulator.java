@@ -2,13 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class StoreSimulator {
-    private Store store;
-    private int restockLimit = 10;
     private final Random random = new Random();
-
-    void setStore(Store store) {
-        this.store = store;
-    }
 
     private boolean shouldSimulationContinue(Scanner scanner) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -21,22 +15,39 @@ public class StoreSimulator {
             }
             return false;  // Return false in case of any input/output error
         }
-    public void autoRestockStore() {
-        if(store.getStock() < restockLimit) {
-            store.restock();
-            System.out.println("The store has now been restocked");
+
+    private void declareInventory(Store store) {
+        for (Item item : store.getItems()) {
+            System.out.println("The store has " + item.getStock() + " " + item.getItemName() + "s stocked");
         }
     }
+
     public void simulateStore() {
         System.out.println("Welcome to the store simulator");
         Scanner scanner = new Scanner(System.in);
+        Store store = new Store();
+        Item chessboard = new Item();
+        chessboard.setItemName("chessboard");
+        chessboard.setItemCapacity(10);
+        chessboard.setRestockLimit(4);
+        Item book = new Item();
+        book.setItemName("book");
+        book.setItemCapacity(30);
+        book.setRestockLimit(10);
+        store.addItemToStore(chessboard);
+        store.addItemToStore(book);
         while(true) {
-            System.out.println("The store has " + store.getStock() + " items stocked");
-            int purchaseQuantity = random.nextInt(1,11);
-            System.out.println("The store sells " + purchaseQuantity + " items");
-            store.sellItems(purchaseQuantity);
-            System.out.println("The store now has " + store.getStock() + " item(s) stocked");
-            autoRestockStore();
+            declareInventory(store);
+            // Sell chessboard
+            int chessBoardPurchaseQuantity = random.nextInt(1,5);
+            System.out.println("The store sells " + chessBoardPurchaseQuantity + " chessboard(s)");
+            store.sellItem(chessboard, chessBoardPurchaseQuantity);
+            // Sell books
+            int bookPurchaseQuantity = random.nextInt(1, 10);
+            System.out.println("The store sells " + bookPurchaseQuantity + " book(s)");
+            store.sellItem(book, bookPurchaseQuantity);
+            store.autoRestockAllItems();
+            declareInventory(store);
             if(!shouldSimulationContinue(scanner)){
                 System.out.println("Aborting simulation");
                 break;

@@ -1,20 +1,28 @@
+import java.util.ArrayList;
+
 public class Store {
-    private int storeCapacity = 100;
-    private int itemsRemaining = storeCapacity;
+    private ArrayList<Item> items = new ArrayList<>();
 
-    void setStoreCapacity(int capacity) {
-        storeCapacity = capacity;
-        itemsRemaining = storeCapacity;
-    }
-    int getStock() {
-        return itemsRemaining;
-    }
-    
-    void sellItems(int numberOfItemsSold) {
-        itemsRemaining = getStock() - numberOfItemsSold;
+    void addItemToStore(Item item) {
+        items.add(item);
     }
 
-    void restock() {
-        itemsRemaining = storeCapacity;
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+    void sellItem(Item item, int numberOfItemsSold) {
+        item.sell(numberOfItemsSold);
+    }
+
+    void restockAllItems() {
+        for(Item item: items) {
+            item.restock();
+        }
+    }
+
+    void autoRestockAllItems() {
+        for(Item item: items) {
+            item.autoRestockSelf();
+        }
     }
 }

@@ -11,6 +11,5 @@ An assignment to learn object-oriented programming using Java.
 
 ### Version 1
 - The store stocks m books and n chessboards
-- Customers.Customer A buys only books
-- Customers.Customer B buys books and chessboards
-- The store stocks up when either supply is low
+- Each item has different inventory values
+- Each item is stocked up when supply is low

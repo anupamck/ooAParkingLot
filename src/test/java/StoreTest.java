@@ -1,21 +1,17 @@
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class StoreTest {
         Store store = new Store();
-        Item chessBoard = new Item();
-
-        Item book = new Item();
+        Chessboard chessBoard = new Chessboard();
+        Book book = new Book();
 
         @BeforeEach
         public void setup() {
-            chessBoard.setItemName("chessBoard");
-            chessBoard.setItemCapacity(12);
-            chessBoard.setRestockLimit(4);
             store.addItemToStore(chessBoard);
-            book.setItemName("book");
-            book.setItemCapacity(30);
-            book.setRestockLimit(10);
             store.addItemToStore(book);
         }
         @Test

@@ -26,14 +26,8 @@ public class StoreSimulator {
         System.out.println("Welcome to the store simulator");
         Scanner scanner = new Scanner(System.in);
         Store store = new Store();
-        Item chessboard = new Item();
-        chessboard.setItemName("chessboard");
-        chessboard.setItemCapacity(10);
-        chessboard.setRestockLimit(4);
-        Item book = new Item();
-        book.setItemName("book");
-        book.setItemCapacity(30);
-        book.setRestockLimit(10);
+        Chessboard chessboard = new Chessboard();
+        Book book = new Book();
         store.addItemToStore(chessboard);
         store.addItemToStore(book);
         while(true) {

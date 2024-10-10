@@ -1,8 +1,8 @@
-public class Item {
+public abstract class Item {
     private int capacity;
     private int quantityAvailable;
     private int restockLimit;
-    private String itemName;
+    protected String itemName;
 
     void setItemCapacity(int itemCapacity) {
         capacity = itemCapacity;
@@ -21,9 +21,7 @@ public class Item {
         itemName = name;
     }
 
-    public String getItemName() {
-        return itemName;
-    }
+    abstract String getItemName();
 
     void sell(int saleQuantity) {
         quantityAvailable = quantityAvailable - saleQuantity;

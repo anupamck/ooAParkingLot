@@ -4,7 +4,7 @@ import java.io.*;
 public class StoreSimulator {
     private final Random random = new Random();
 
-    private boolean shouldSimulationContinue(Scanner scanner) {
+    private boolean shouldSimulationContinue() {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Press Enter key to continue, any other key to abort: ");
             try {
@@ -24,7 +24,6 @@ public class StoreSimulator {
 
     public void simulateStore() {
         System.out.println("Welcome to the store simulator");
-        Scanner scanner = new Scanner(System.in);
         Store store = new Store();
         Chessboard chessboard = new Chessboard();
         Book book = new Book();
@@ -42,7 +41,7 @@ public class StoreSimulator {
             store.sellItem(book, bookPurchaseQuantity);
             store.autoRestockAllItems();
             declareInventory(store);
-            if(!shouldSimulationContinue(scanner)){
+            if(!shouldSimulationContinue()){
                 System.out.println("Aborting simulation");
                 break;
             }
